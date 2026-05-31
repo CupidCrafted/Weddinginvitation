@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Ama & Kofi | Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat', sans-serif;
+    background:#f6f1f8;
+    color:#2c2233;
+    overflow-x:hidden;
+}
+
+/* Glow */
+body::before{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:rgba(180,151,201,0.15);
+    border-radius:50%;
+    top:-200px;
+    right:-150px;
+    filter:blur(100px);
+    z-index:-1;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(30,20,40,0.45), rgba(30,20,40,0.45)),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1974&auto=format&fit=crop') center/cover;
+    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    color:white;
+    animation:zoomBg 18s ease-in-out infinite alternate;
+}
+
+@keyframes zoomBg{
+    from{background-size:100%;}
+    to{background-size:110%;}
+}
+
+.hero-content{max-width:800px;}
+
+.hero h1{
+    font-family:'Cormorant Garamond', serif;
+    font-size:5rem;
+}
+
+.hero span{color:#d8c4e8;}
+
+.and{font-size:2rem;color:#d8c4e8;margin:10px 0;}
+
+.btn{
+    margin-top:30px;
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(to right,#d8c4e8,#b497c9);
+    color:white;
+    cursor:pointer;
+}
+
+/* SECTIONS */
+section{padding:100px 20px;}
+.container{max-width:1100px;margin:auto;}
+
+.section-title{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.section-sub{
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+    color:#5b5162;
+}
+
+/* COUNTDOWN */
+.countdown-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:20px;
+    margin-top:50px;
+}
+
+.count-box{
+    background:rgba(255,255,255,0.5);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.count-box h3{
+    font-size:3rem;
+    color:#b497c9;
+}
+
+/* TIMELINE */
+.timeline-item{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+/* DETAILS */
+.details-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.detail-card{
+    background:rgba(255,255,255,0.5);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+/* RSVP */
+.rsvp-box{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:none;
+    background:#f6f1f8;
+    border-radius:10px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(to right,#b497c9,#d8c4e8);
+    color:white;
+    cursor:pointer;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+/* MUSIC */
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:none;
+    background:#b497c9;
+    color:white;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    background:#2c2233;
+    color:white;
+    text-align:center;
+    padding:70px 20px;
+}
+
+.footer-brand{
+    margin-top:30px;
+    font-size:0.8rem;
+    letter-spacing:3px;
+    opacity:0.7;
+    text-transform:uppercase;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Ama <span>&</span> Kofi</h1>
+        <p>Invite you to celebrate their forever</p>
+        <div class="btn" onclick="document.getElementById('story').scrollIntoView()">View Invitation</div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">Countdown</h2>
+
+        <div class="countdown-grid">
+            <div class="count-box"><h3 id="days">0</h3><p>Days</p></div>
+            <div class="count-box"><h3 id="hours">0</h3><p>Hours</p></div>
+            <div class="count-box"><h3 id="minutes">0</h3><p>Minutes</p></div>
+            <div class="count-box"><h3 id="seconds">0</h3><p>Seconds</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="story">
+    <div class="container">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-sub">
+            A journey of love, laughter, and forever.
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">Timeline</h2>
+
+        <div class="timeline-item">2019 — We met</div>
+        <div class="timeline-item">2021 — We became inseparable</div>
+        <div class="timeline-item">2024 — The proposal</div>
+        <div class="timeline-item">2026 — Forever begins</div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">Wedding Details</h2>
+
+        <div class="details-grid">
+            <div class="detail-card">📅 12 July 2026</div>
+            <div class="detail-card">⏰ 3:00 PM</div>
+            <div class="detail-card">📍 Accra, Ghana</div>
+            <div class="detail-card">👗 Lilac & Champagne</div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">RSVP</h2>
+
+        <div class="rsvp-box">
+            <form action="https://formspree.io/f/mykvaqpq" method="POST">
+                <input name="name" placeholder="Full Name" required>
+                <input name="phone" placeholder="Phone Number" required>
+
+                <select name="attendance" required>
+                    <option value="">Will you attend?</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+
+                <textarea name="message" placeholder="Message"></textarea>
+
+                <button class="submit-btn" type="submit">Send RSVP</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">Gallery</h2>
+
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486" />
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" />
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" />
+            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8" />
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h2>We Can't Wait To Celebrate With You</h2>
+    <p>Ama & Kofi</p>
+
+    <div class="footer-brand">
+        Designed & Crafted by CupidCrafted
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script>
+AOS.init();
+
+const weddingDate = new Date("July 12, 2026 15:00:00").getTime();
+
+setInterval(() => {
+    let now = new Date().getTime();
+    let distance = weddingDate - now;
+
+    document.getElementById("days").innerText = Math.floor(distance/(1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    document.getElementById("minutes").innerText = Math.floor((distance%(1000*60*60))/(1000*60));
+    document.getElementById("seconds").innerText = Math.floor((distance%(1000*60))/1000);
+},1000);
+
+const music = document.getElementById("music");
+
+function toggleMusic(){
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Luxury Invitation Envelope</title>
+
+<style>
+
+/* ================= BACKDROP ================= */
+#envelope-screen{
+    position:fixed;
+    inset:0;
+    background: radial-gradient(circle at top, #f6f2ec, #e3dbd2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    transition:opacity 1s ease, visibility 1s ease;
+}
+
+/* ================= WRAPPER ================= */
+.envelope-wrapper{
+    text-align:center;
+    cursor:pointer;
+}
+
+/* ================= ENVELOPE ================= */
+.envelope{
+    position:relative;
+    width:360px;
+    height:240px;
+    perspective:1600px;
+    transform-style:preserve-3d;
+}
+
+/* ================= BACK LAYER ================= */
+.envelope-back{
+    position:absolute;
+    inset:0;
+    border-radius:8px;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0,0,0,0.12), transparent 55%),
+        linear-gradient(135deg, #6f8f6a, #5f7d5a);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.25),
+        inset 0 2px 10px rgba(255,255,255,0.15);
+
+    overflow:hidden;
+}
+
+/* subtle floral emboss */
+.envelope-back::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+        url("https://www.transparenttextures.com/patterns/old-wall.png");
+    opacity:0.06;
+}
+
+/* ================= INNER PAPER ================= */
+.envelope-inner{
+    position:absolute;
+    inset:14px;
+    border-radius:6px;
+
+    background:
+        linear-gradient(135deg,#fbfaf7,#f2eee7),
+        url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+
+    opacity:0.9;
+
+    transform:translateZ(-1px);
+}
+
+/* ================= FRONT BODY ================= */
+.envelope-body{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60%;
+
+    background: linear-gradient(180deg,#6f8f6a,#587458);
+
+    clip-path:polygon(0 0,100% 0,50% 100%);
+
+    box-shadow:
+        inset 0 12px 20px rgba(0,0,0,0.18);
+}
+
+/* ================= FLAP ================= */
+.envelope-flap{
+    position:absolute;
+    top:0;
+    width:100%;
+    height:65%;
+
+    background: linear-gradient(180deg,#7fa57a,#6f8f6a);
+
+    clip-path:polygon(0 0,100% 0,50% 100%);
+
+    transform-origin:top;
+    transition:transform 1s cubic-bezier(.2,.9,.2,1);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.2),
+        inset 0 -8px 10px rgba(255,255,255,0.12);
+}
+
+/* OPEN STATE */
+.envelope.open .envelope-flap{
+    transform:rotateX(-175deg);
+}
+
+/* ================= WAX SEAL ================= */
+.wax-seal{
+    position:absolute;
+    top:52%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:96px;
+    height:96px;
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle at 30% 25%, #ff6b6b 0%, #b32626 45%, #5c0f0f 100%);
+
+    box-shadow:
+        0 22px 40px rgba(0,0,0,0.4),
+        inset 0 6px 8px rgba(255,255,255,0.25),
+        inset 0 -10px 15px rgba(0,0,0,0.35);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:700;
+    letter-spacing:2px;
+    color:#ffecec;
+
+    border:2px solid rgba(255,255,255,0.15);
+}
+
+/* pressed wax distortion */
+.wax-seal::before{
+    content:'';
+    position:absolute;
+    inset:6px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 40% 30%, rgba(255,255,255,0.25), transparent 60%);
+}
+
+/* engraved initials */
+.wax-seal::after{
+    content:'A & K';
+    position:absolute;
+    font-size:0.85rem;
+    color:rgba(255,255,255,0.9);
+    text-shadow:0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ================= HINT ================= */
+.hint{
+    margin-top:16px;
+    font-size:0.9rem;
+    color:#6a5f6b;
+    letter-spacing:1px;
+}
+
+/* ================= CLOSE STATE ================= */
+body.envelope-opened #envelope-screen{
+    opacity:0;
+    visibility:hidden;
+    transform:scale(1.05);
+}
+
+/* small lift animation */
+.envelope-wrapper:hover .envelope{
+    transform:translateY(-4px);
+    transition:0.3s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="envelope-screen">
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+
+        <div class="envelope">
+
+            <div class="envelope-back"></div>
+            <div class="envelope-inner"></div>
+            <div class="envelope-body"></div>
+            <div class="envelope-flap"></div>
+
+            <div class="wax-seal"></div>
+
+        </div>
+
+        <p class="hint">Tap to open invitation</p>
+
+    </div>
+</div>
+
+<script>
+let opened = false;
+
+function openEnvelope(){
+    if(opened) return;
+    opened = true;
+
+    document.querySelector('.envelope').classList.add('open');
+
+    setTimeout(() => {
+        document.body.classList.add('envelope-opened');
+    }, 950);
+}
+</script>
+
+</body>
+</html>
